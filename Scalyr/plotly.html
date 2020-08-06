@@ -1,0 +1,29 @@
+<body>
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<html>
+<div id="myDiv"></div>
+<script>
+var trace1 = {
+    x: [1, 2, 3, 4],
+    y: [5, 10, 2, 8]
+};
+
+var data = [ trace1 ];
+
+var layout = {
+	font: {size: 18},
+  xaxis: {
+    title: 'xAXIS TITLE'
+  },
+  yaxis: {
+    title: 'yAXIS TITLE'
+  }
+};
+
+Plotly.newPlot('myDiv', data, layout, {responsive: true});
+</script>
+</html>
+</body>

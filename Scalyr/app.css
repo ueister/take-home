@@ -1,0 +1,13 @@
+/* Globals */
+:root {
+  --font-sans: Arial, sans-serif;
+  --color: #1e1e1e;
+
+  font-family: var(--font-sans);
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+label, p {
+  color: var(--color);
+}

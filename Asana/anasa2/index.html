@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content='Asana Puppy Image Gallery' name='keywords'>
+	<meta content='Asana Puppy Image Gallery' name='description'>
+    <title>Asana Puppy Image Gallery</title>
+    <!-- Asana CSS -->
+    <link rel="stylesheet" href="app.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="dogs.js"></script>
+  </head>
+  <body>
+<!-- Put your final HTML here -->
+<!-- Asana Header -->
+	<header class="global-header" role="banner">
+		<h1>Puppy image gallery</h1>
+		<blockquote class="header-quote">
+		<p>A dog will teach you unconditional love. If you can have that in your life, things won't be too bad.</p>
+		<cite>—Robert Wagner</cite>
+		</blockquote>
+	</header>
+
+	<div class="container">
+		<div class="row" id="modalarea">
+		</div>
+	</div>
+
+	<footer class="global-footer">
+		<p>Built by a wonderful developer for Asana.</p>
+	</footer>
+
+<!-- javascript to populate grid and modals from the dogs.js file -->
+
+<script>
+function writeImage(key,image) {
+	var modal = '<div style="padding-bottom: 30px;" class="text-center col-md-2 col-xs-6"><img src="'+image+'" style="max-height: 85px; margin: auto;" class="img-responsive" class="btn btn-primary" data-toggle="modal" data-target="#dogimage'+key+'"><div class="modal fade" id="dogimage'+key+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"><div class="modal-dialog"><div class="modal-content" role="document"><div class="modal-header" style="border:none"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><img src="'+image+'" class="img-responsive" style="display:block;max-width:100%;height:auto;"></div></div></div></div></div>';
+
+	return modal;
+}
+
+var writeGrid = "";
+for (var key in dogs) {
+	if (dogs.hasOwnProperty(key)) {
+		writeGrid = writeGrid + writeImage(key,dogs[key].image);
+	}
+}
+
+document.getElementById("modalarea").innerHTML = writeGrid;
+</script>
+
+  </body>
+</html>

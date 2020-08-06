@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content='Scalyr' name='keywords'>
+	<meta content='Scalyr' name='description'>
+    <title>Scalyr</title>
+
+	<link rel="preload" href="https://www.scalyr.com/wp-content/themes/scalyr/dist/css/master.min.css?ver=1556642710" as="style">
+	<link rel='stylesheet' id='master_css-css'  href='https://prod-design.scalyr.com/wp-content/themes/scalyr/dist/css/master.min.css?ver=1556642710' type='text/css' media='all' />
+	<link rel="stylesheet" href="app.css">
+	
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+	<script>
+	function getValues() {
+		var members = $("#members").val();
+		var salary = $("#salary").val();
+		
+		var header = "<div class=\"container\"><p><b>Calculations:</b><br/>(Number of Team Members) * (Mean Salary) * (Percent of Time Spent Troubleshooting)</p><div class=\"row\">";
+
+		var generic = "<div class=\"col-sm\"><p><b>Generic:</b> $" + (members * salary * 0.4) + "</p></div>";
+		var microservices = "<div class=\"col-sm\"><p><b>Microservices:</b> $" + (members * salary * 0.62) + "</p></div>";
+		var push = "<div class=\"col-sm\"><p><b>Code push 1/ day:</b> $" + (members * salary * 0.73) + "</p></div></div></div>";
+		
+		$("#results").html(header+generic+microservices+push);
+		
+		var trace1 = {
+		    x: [1, 3, 6, 9, 14, 50],
+		    y: [(members * 96000 * 0.4), (members * 106000 * 0.4), (members * 118000 * 0.4), (members * 124000 * 0.4), (members * 129000 * 0.4), (members * 134000 * 0.4)],
+			name: 'Generic'
+		};
+
+		var trace2 = {
+		    x: [1, 3, 6, 9, 14, 50],
+		    y: [(members * 96000 * 0.62), (members * 106000 * 0.62), (members * 118000 * 0.62), (members * 124000 * 0.62), (members * 129000 * 0.62), (members * 134000 * 0.62)],
+			name: 'Microservices'
+		};
+
+		var trace3 = {
+		    x: [1, 3, 6, 9, 14, 50],
+		    y: [(members * 96000 * 0.73), (members * 106000 * 0.73), (members * 118000 * 0.73), (members * 124000 * 0.73), (members * 129000 * 0.73), (members * 134000 * 0.73)],
+			name: 'Code push 1/ day'
+		};
+
+		var data = [ trace1,trace2,trace3 ];
+
+		var layout = {
+			font: {size: 18},
+			  xaxis: {
+		    title: 'Years of Experience'
+		  },
+		  yaxis: {
+		    title: 'Mean Salary ($)'
+		  }
+		};
+
+		Plotly.newPlot('myDiv', data, layout, {responsive: true, displayModeBar: false});
+	}
+	</script>
+  </head>
+  <body>
+
+		<header class="site-header" style="position:absolute;">
+	<div class="site-header__container">
+		<div class="site-header__logo-container">
+			<a href="/" class="site-header__logo" title="Scalyr" aria-label="Home">
+				<svg viewBox="0 0 120 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <polygon id="logo-path-1" points="0.320059027 0.239170909 15.3792301 0.239170909 15.3792301 3.55274417 0.320059027 3.55274417"></polygon>
+        <polygon id="logo-path-3" points="6.52590931e-16 3.51632341 6.52590931e-16 0.202682014 14.9205692 0.202682014 14.9205692 3.51632341 0 3.51632341"></polygon>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-20.000000, -23.000000)">
+            <g transform="translate(20.000000, 20.000000)">
+                <g transform="translate(0.000000, 3.266667)">
+                    <g transform="translate(1.846154, 0.000000)">
+                        <mask id="logo-mask-2" fill="white">
+                            <use xlink:href="#logo-path-1"></use>
+                        </mask>
+                        <path d="M13.8218487,3.55274417 L1.8774405,3.55274417 C1.01724584,3.55274417 0.320059027,2.81104179 0.320059027,1.89592347 C0.320059027,0.981145846 1.01724584,0.239102769 1.8774405,0.239102769 L13.8218487,0.239102769 C14.6820433,0.239102769 15.3792301,0.981145846 15.3792301,1.89592347 C15.3792301,2.81104179 14.6820433,3.55274417 13.8218487,3.55274417" fill="#44666E" mask="url(#logo-mask-2)"></path>
+                    </g>
+                    <g transform="translate(0.000000, 4.684615)">
+                        <mask id="logo-mask-4" fill="white">
+                            <use xlink:href="#logo-path-3"></use>
+                        </mask>
+                        <path d="M13.3778192,3.51632341 L1.54287692,3.51632341 C0.690905769,3.51632341 -0.000190384615,2.77462103 -0.000190384615,1.85950271 C-0.000190384615,0.944725091 0.690905769,0.202682014 1.54287692,0.202682014 L13.3778192,0.202682014 C14.2301077,0.202682014 14.9205692,0.944725091 14.9205692,1.85950271 C14.9205692,2.77462103 14.2301077,3.51632341 13.3778192,3.51632341" fill="#52927E" mask="url(#logo-mask-4)"></path>
+                    </g>
+                    <path d="M15.9633338,12.6484615 L3.88282003,12.6484615 C3.01282351,12.6484615 2.30769231,11.9143859 2.30769231,11.0090148 C2.30769231,10.1033064 3.01282351,9.36923077 3.88282003,9.36923077 L15.9633338,9.36923077 C16.8333303,9.36923077 17.5384615,10.1033064 17.5384615,11.0090148 C17.5384615,11.9143859 16.8333303,12.6484615 15.9633338,12.6484615" fill="#42ABA6"></path>
+                    <path d="M18.27135,16.8646154 L6.19051234,16.8646154 C5.32083972,16.8646154 4.61538462,16.1306152 4.61538462,15.2253372 C4.61538462,14.3197219 5.32083972,13.5853846 6.19051234,13.5853846 L18.27135,13.5853846 C19.1413465,13.5853846 19.8461538,14.3197219 19.8461538,15.2253372 C19.8461538,16.1306152 19.1413465,16.8646154 18.27135,16.8646154" fill="#4BB6A0"></path>
+                    <path d="M15.9633338,21.5492308 L3.88282003,21.5492308 C3.01282351,21.5492308 2.30769231,20.8151552 2.30769231,19.909784 C2.30769231,19.0040756 3.01282351,18.27 3.88282003,18.27 L15.9633338,18.27 C16.8333303,18.27 17.5384615,19.0040756 17.5384615,19.909784 C17.5384615,20.8151552 16.8333303,21.5492308 15.9633338,21.5492308" fill="#8FCC97"></path>
+                    <g class="logo__scalyr-text">
+                        <path d="M30.3878938,3.75126257 C26.8835278,3.84351165 24.6130615,5.62525544 24.6836997,8.33209782 C24.8188195,13.5361848 32.4963459,11.7801925 32.5640678,14.382399 C32.5861017,15.2214419 31.867407,15.6813835 30.699285,15.7123505 C29.176676,15.7524446 26.9007013,14.9303521 25.3644831,13.647992 L24,16.5605205 C25.7685464,17.941975 28.2956431,18.7995981 30.7362242,18.7350563 C33.9904404,18.6493266 36.5363307,17.0282853 36.45986,14.0906572 C36.3214999,8.78160837 28.6413813,10.4329648 28.5752795,7.89367019 C28.5568099,7.18045113 29.1941736,6.80656527 30.1536213,6.78113972 C31.3428052,6.74984675 33.298964,7.32844082 34.8659648,8.18997555 L36.1876762,5.23637503 C34.6602069,4.28976252 32.4947258,3.69584792 30.3878938,3.75126257" fill="#FFFFFF"></path>
+                        <path d="M47.7729125,3.74769231 C43.433803,3.74769231 40.1538462,6.93892416 40.1538462,11.1799891 C40.1538462,15.4843049 43.3521837,18.7384615 47.6507999,18.7384615 C49.749175,18.7384615 52.0104724,17.6677622 53.5384615,16.05128 L51.4195234,13.7416471 C50.421427,14.7914803 49.0361134,15.4631126 47.8339688,15.4631126 C45.5726714,15.4631126 43.8615134,13.5946053 43.8615134,11.1379306 C43.8615134,8.72364046 45.5726714,6.87599938 47.8339688,6.87599938 C49.0971697,6.87599938 50.4824833,7.61088256 51.4195234,8.78656524 L53.5178985,6.22523326 C52.0917753,4.71340836 49.8915343,3.74769231 47.7729125,3.74769231" fill="#FFFFFF"></path>
+                        <path d="M62.2306727,12.7929657 L64.3429677,7.41966673 L66.4144189,12.7929657 L62.2306727,12.7929657 Z M66.3520277,3.74769231 L62.5619248,3.74769231 L56.3076923,18.27 L60.0974736,18.27 L61.153621,15.5934986 L67.491149,15.5934986 L68.5267138,18.27 L72.4615385,18.27 L66.3520277,3.74769231 Z" fill="#FFFFFF"></path>
+                        <polygon fill="#FFFFFF" points="80.709162 15.1785571 80.709162 3.74769231 77.0769231 3.74769231 77.0769231 18.27 86.7692308 18.27 86.7692308 15.1785571"></polygon>
+                        <polygon fill="#FFFFFF" points="98.1178854 13.5812901 103.384615 3.74769231 99.6941047 3.74769231 96.272469 10.0752278 92.7680778 3.74769231 89.0769231 3.74769231 94.447661 13.6847033 94.447661 18.27 98.1178854 18.27"></polygon>
+                        <path d="M113.272822,11.2784937 L110.477174,11.2784937 L110.477174,6.65228271 L113.272822,6.65228271 C114.867624,6.65228271 115.799292,7.41966673 115.799292,8.93413872 C115.799292,10.4695511 114.867624,11.2784937 113.272822,11.2784937 Z M116.955757,13.4775547 C118.653793,12.6270535 119.585782,11.0297865 119.585782,8.80978514 C119.585782,5.57337041 117.390557,3.74769231 113.559365,3.74769231 L107.076923,3.74769231 L107.076923,18.27 L110.763396,18.27 L110.763396,14.1830841 L113.559365,14.1830841 L113.66292,14.1830841 L115.816659,18.27 L120,18.27 L116.955757,13.4775547 Z" fill="#FFFFFF"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
+			</a>
+		</div>
+	</div>
+</header>
+	
+		<main class="global-content">
+<div class="banner bg-green" style="height:70px;">
+			<div class="banner__content-container">
+	</div>
+</div>
+		</main> 
+
+<!-- Scalyr Content -->
+	<div style="height:20px;"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
+	    		<div class="form-group">
+					<label for="members">Number of Team Members</label><br/>
+					<input type="text" class="form-control" id="members" placeholder="Enter number of team members">
+				</div>
+    		</div>
+    		<div class="col-sm">
+				<div class="form-group">
+					<label for="salary">Minimum # of Years - Maximum # of Years:</label>
+					<select class="form-control" id="salary">
+		    		  <option></option>
+		    		  <option value="96000">0-1</option>
+				      <option value="106000">1-3</option>
+				      <option value="118000">4-6</option>
+				      <option value="124000">7-9</option>
+				      <option value="129000">10-14</option>
+				      <option value="134000">15-50</option>
+				    </select>
+			    </div>
+			</div>
+		</div>
+	
+		<div style="text-align:center;margin-top:5px;">
+			<button type="submit" class="btn btn-primary" onclick="getValues();">Submit</button>
+		</div>
+	
+		<div id="results"></div>
+	
+		<div id="myDiv"></div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm">
+				<p>Salary Look-Up Table:</p>
+				<image src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fe689d457-a0c6-4c57-bf03-0150f7ca8ac9%2FScreenshot_2019-04-29_16.13.58.png?table=block&id=e016f5b8-7c50-48db-ace0-1010173ea7f9&width=2620&cache=v2">
+			</div>
+			<div class="col-sm">
+				<p>Time Spent Troubleshooting Look-Up Table:</p>
+				<image src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F88bf4f4d-bf97-4502-93fc-40a4e1f38edc%2FScreenshot_2019-04-29_16.18.32.png?table=block&id=bf9501a9-bc22-451e-980e-3988f511d52e&width=2580&cache=v2">
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

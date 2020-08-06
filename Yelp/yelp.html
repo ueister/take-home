@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<script>
+var qa=[["what is a cat?","A cat is an animal!"],
+["What is a dog?","A dog is an animal. They chase cats."],
+["What is a tree?","A tree is a type of plant"]];
+
+function isValue(value) {
+	if (value.includes("cat")) {
+		return value;
+	}
+}
+
+for (let i = 0; i < qa.length; i++) {
+	var filtered = qa[i].filter(isValue);
+	console.log(filtered);
+}
+
+//const filtered = qa.forEach(q => q.filter(x => x.includes("cat")));
+//console.log(filtered);
+
+var filtera = ["what is a cat?","A cat is an animal!"];
+//console.log(filtera);
+
+for (let i = 0; i < filtera.length; i++) {
+	if (filtera[i].includes("animal"))
+		console.log(filtera[i]);
+}
+</script>
+</body>
+</html>
