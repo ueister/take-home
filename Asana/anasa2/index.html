@@ -42,18 +42,26 @@
 <!-- javascript to populate grid and modals from the dogs.js file -->
 
 <script>
+/* old code
 function writeImage(key,image) {
 	var modal = '<div style="padding-bottom: 30px;" class="text-center col-md-2 col-xs-6"><img src="'+image+'" style="max-height: 85px; margin: auto;" class="img-responsive" class="btn btn-primary" data-toggle="modal" data-target="#dogimage'+key+'"><div class="modal fade" id="dogimage'+key+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"><div class="modal-dialog"><div class="modal-content" role="document"><div class="modal-header" style="border:none"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><img src="'+image+'" class="img-responsive" style="display:block;max-width:100%;height:auto;"></div></div></div></div></div>';
 
 	return modal;
 }
 
-var writeGrid = "";
 for (var key in dogs) {
 	if (dogs.hasOwnProperty(key)) {
 		writeGrid = writeGrid + writeImage(key,dogs[key].image);
 	}
 }
+
+redo to make it cleaner
+*/
+var writeGrid = "";
+
+const makeGrid = (x,i) => {writeGrid = writeGrid + '<div style="padding-bottom: 30px;" class="text-center col-md-2 col-xs-6"><img src="'+x.image+'" style="max-height: 85px; margin: auto;" class="img-responsive" class="btn btn-primary" data-toggle="modal" data-target="#dogimage'+i+'"><div class="modal fade" id="dogimage'+i+'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true"><div class="modal-dialog"><div class="modal-content" role="document"><div class="modal-header" style="border:none"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><a href="'+x.source+'"><img src="'+x.image+'" class="img-responsive" style="display:block;max-width:100%;height:auto;"></a></div></div></div></div></div>'};
+
+dogs.forEach(makeGrid);
 
 document.getElementById("modalarea").innerHTML = writeGrid;
 </script>
